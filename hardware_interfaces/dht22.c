@@ -3,6 +3,7 @@
  *	read temperature and humidity from DHT11 or DHT22 sensor
  */
 
+#include <time.h>
 #include <wiringPi.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -82,13 +83,13 @@ void read_dht_data()
 		float f = c * 1.8f + 32;
 		printf( "Humidity = %.1f %% Temperature = %.1f *C (%.1f *F)\n", h, c, f );
 
-		FILE *file = fopen("./../data/temp_and_humid.txt", "w");
+		FILE *file = fopen("./../data/temp_and_humid.yaml", "w");
 		if (file == NULL)
 		{
 		    printf("Error opening file!\n");
 		    exit(1);
 		}
-		fprintf(file, "humididty: %f, temp: %f\n", h, f);
+		fprintf(file, "data:\n    humidity: %f\n    temp: %f\n    time: %u\n", h, f, (unsigned)time(NULL));
 		fclose(file);
 
 	}else  {
