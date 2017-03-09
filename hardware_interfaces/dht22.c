@@ -81,6 +81,16 @@ void read_dht_data()
 		}
 		float f = c * 1.8f + 32;
 		printf( "Humidity = %.1f %% Temperature = %.1f *C (%.1f *F)\n", h, c, f );
+
+		FILE *file = fopen("./../data/temp_and_humid.txt", "w");
+		if (file == NULL)
+		{
+		    printf("Error opening file!\n");
+		    exit(1);
+		}
+		fprintf(file, "humididty: %f, temp: %f\n", h, f);
+		fclose(file);
+
 	}else  {
 		printf( "Data not good, skip\n" );
 	}
@@ -89,6 +99,7 @@ void read_dht_data()
 int main( void )
 {
 	printf( "Raspberry Pi DHT11/DHT22 temperature/humidity test\n" );
+
 
 	if ( wiringPiSetup() == -1 )
 		exit( 1 );
