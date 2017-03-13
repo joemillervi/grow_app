@@ -14,5 +14,6 @@ def find_path_of_most_recent_image():
     image_filenames = os.listdir('/home/pi/grow_app/data/images') 
     image_timestamps = [float(image_filename[:-4]) for image_filename in image_filenames]
     image_timestamps.sort()
-    return '/home/pi/grow_app/data/images/' + str(image_timestamps[len(image_timestamps) - 1]) + '.jpg'
+    return '/images/' + str(image_timestamps[len(image_timestamps) - 1]) + '.jpg'
+
 

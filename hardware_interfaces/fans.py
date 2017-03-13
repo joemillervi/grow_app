@@ -5,5 +5,5 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.OUT, initial=GPIO.HIGH)
 
 GPIO.output(4, GPIO.LOW)
-time.sleep(1)
+raw_input()
 GPIO.cleanup(4)
